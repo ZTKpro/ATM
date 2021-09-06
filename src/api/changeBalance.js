@@ -23,7 +23,7 @@ const changeBalance = (change, operation) => {
     client.accountBalance = client.accountBalance - change;
   }
 
-  // return clients.find(({ id }) => `${id}` === sessionStorage.getItem("clientId")) = client
+  clients.find(({ id }) => `${id}` === sessionStorage.getItem("clientId"));
 };
 
 export default changeBalance;
