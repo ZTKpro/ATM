@@ -2,8 +2,6 @@ import React from "react";
 
 import styled from "styled-components";
 
-import clients from "../api/clients";
-
 function HeaderText({ currentClient }) {
   const Wrapper = styled.section`
     z-index: 1;
