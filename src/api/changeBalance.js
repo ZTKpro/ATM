@@ -11,16 +11,15 @@ const changeBalance = (change, operation) => {
   }
 
   if (operation === "minus") {
+    if (client.accountBalance < change) {
+      window.location.pathname = "/lackOfFunds";
+      return;
+    }
     client.accountBalance = client.accountBalance - change;
   }
 
   if (operation === "add") {
-    if (client.accountBalance < client.accountBalance - change) {
-      window.location.pathname = "/lackOfFunds";
-      alert("lackoffounds");
-      return;
-    }
-    client.accountBalance = client.accountBalance - change;
+    client.accountBalance = client.accountBalance + change;
   }
 
   const clientId = Number(sessionStorage.getItem("clientId"));
