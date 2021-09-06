@@ -16,17 +16,6 @@ function HeaderText({ currentClient }) {
     font-size: 70px;
   `;
 
-  setInterval(function () {
-    console.log(currentClient?.accountBalance);
-  }, 3000);
-
-  setInterval(function () {
-    console.log(
-      clients.find(({ id }) => `${id}` === sessionStorage.getItem("clientId"))
-        .accountBalance
-    );
-  }, 3000);
-
   return (
     <Wrapper>
       <Content> {currentClient?.accountBalance + " zł"}</Content>

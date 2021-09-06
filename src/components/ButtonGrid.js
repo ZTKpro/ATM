@@ -51,7 +51,7 @@ function ButtonGrid({ buttons }) {
   return (
     <Wrapper>
       {buttons.map(({ text, version, goTo, onClick, varFun }, nr) => (
-        <Link to={goTo ? goTo : "/menu"}>
+        <Link to={goTo ? goTo : "/menu"} key={nr}>
           <Button
             {...{ text, version }}
             onClickFun={onClick}

@@ -17,7 +17,7 @@ const clients = [
     name: "admin",
     login: "admin",
     password: "admin",
-    accountBalance: 1000000,
+    accountBalance: 100,
     blikCode: 123426,
     card: {
       numberCard: 1234123891234567,
