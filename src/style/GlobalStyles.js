@@ -12,7 +12,6 @@ export default createGlobalStyle`
         padding: 0;
         font-family: 'Poppins', sans-serif;
         color: ${colors.white};
-        transition: all .4s ease;
     }
 
     

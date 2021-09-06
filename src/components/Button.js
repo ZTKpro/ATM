@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import colors from "../style/colors";
 
-function Button({ text, version, onClick }) {
+function Button({ text, version, onClickFun, classname, value }) {
   const Btn = styled.button`
     display: flex;
     align-items: center;
@@ -20,7 +20,14 @@ function Button({ text, version, onClick }) {
   `;
 
   return (
-    <Btn className="button" onClick={onClick}>
+    <Btn
+      className={`button ${classname}`}
+      onClick={() =>
+        typeof onClickFun === "function" && value
+          ? onClickFun(...value)
+          : console.log("")
+      }
+    >
       {text}
     </Btn>
   );

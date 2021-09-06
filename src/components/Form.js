@@ -1,12 +1,9 @@
+import React, { useState } from "react";
+
 import styled from "styled-components";
 import colors from "../style/colors";
-import React from "react";
 
-import Button from "../components/Button";
-
-import { loginIn } from "../api/verification";
-
-function Form({ dataForm }) {
+function Form({ forms }) {
   const Wrapper = styled.div`
     position: relative;
     z-index: 2;
@@ -19,14 +16,6 @@ function Form({ dataForm }) {
       ${colors.lightOrange},
       ${colors.orange}
     );
-
-    .button {
-      margin-top: 20px;
-      height: 50px;
-      border-radius: 10px;
-      background-color: ${colors.main};
-      width: 100%;
-    }
   `;
 
   const Label = styled.label`
@@ -50,13 +39,25 @@ function Form({ dataForm }) {
     font-size: 18px;
   `;
 
-  let errorMessage = "";
+  const ButtonSubmit = styled.button`
+    margin-top: 20px;
+    height: 50px;
+    border-radius: 10px;
+    background-color: ${colors.main};
+    width: 100%;
+    border: none;
+    text-transform: uppercase;
+    font-size: 20px;
+    cursor: pointer;
+  `;
+
+  const [errorMessage, setErrorMessage] = useState("");
 
   let dataToSubmit = [];
 
   return (
     <Wrapper>
-      {dataForm.buttons.map(({ label }, nr) => (
+      {forms.buttons.map(({ label }, nr) => (
         <div>
           <Label for={label}>{label}</Label>
           <Input
@@ -69,15 +70,15 @@ function Form({ dataForm }) {
         </div>
       ))}
       <Error> {errorMessage} </Error>
-      <Button
-        text={dataForm.submitButton.text}
-        version={dataForm.submitButton.version}
+      <ButtonSubmit
         onClick={() => {
-          dataForm.submitButton.onSumbit(...dataToSubmit)
+          forms.submitButton.onSumbit(...dataToSubmit)
             ? console.log(true)
-            : (errorMessage = dataForm.submitButton.errorMessage);
+            : setErrorMessage(forms.submitButton.errorMessage);
         }}
-      />
+      >
+        {forms.submitButton.text}
+      </ButtonSubmit>
     </Wrapper>
   );
 }
