@@ -36,7 +36,7 @@ export const menuButtons = [
   {
     text: "Pomoc",
     version: "gradient",
-    goTo: "/blik",
+    goTo: "/help",
   },
   {
     text: "Wpłać",
