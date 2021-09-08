@@ -72,9 +72,13 @@ function Form({ forms }) {
       <Error> {errorMessage} </Error>
       <ButtonSubmit
         onClick={() => {
-          forms.submitButton.onSumbit(...dataToSubmit)
-            ? console.log(true)
-            : setErrorMessage(forms.submitButton.errorMessage);
+          if (
+            forms.submitButton.onSumbit(
+              ...dataToSubmit,
+              forms.submitButton.varFun
+            ) === false
+          )
+            setErrorMessage(forms.submitButton.errorMessage);
         }}
       >
         {forms.submitButton.text}

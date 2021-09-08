@@ -11,6 +11,7 @@ import AccountBalance from "./components/AccountBalance";
 import BackgroundImg from "./components/BackgroundImg";
 import ButtonGrid from "./components/ButtonGrid";
 import Form from "./components/Form";
+import SEO from "./components/Helmet";
 
 import clients from "./api/clients";
 import {
@@ -20,17 +21,11 @@ import {
   thanksText,
   lackOfFundsText,
 } from "./api/text";
-import { loginForm, blikForm } from "./api/forms";
-import {
-  homepageButtons,
-  loginButtons,
-  blikButtons,
-  menuButtons,
-  accountBalanceButtons,
-  depositButtons,
-  withdrawButtons,
-  thanksTextButtons,
-} from "./api/navigation";
+import { loginForm, blikForm, depositForm, withdrawForm } from "./api/forms";
+import { homepageButtons } from "./api/navigation";
+import blikGenerator from "./functions/blikGenerator";
+
+import switchNav from "./functions/switchNaviBtn";
 
 function App() {
   const Wrapper = styled.section`
@@ -41,40 +36,7 @@ function App() {
   `;
 
   const location = useLocation();
-
-  useEffect(() => {
-    switch (location.pathname) {
-      case "/":
-        setCurrentNavigation(homepageButtons);
-        break;
-      case "/login":
-        setCurrentNavigation(loginButtons);
-        break;
-      case "/blik":
-        setCurrentNavigation(blikButtons);
-        break;
-      case "/menu":
-        setCurrentNavigation(menuButtons);
-        break;
-      case "/accountBalance":
-        setCurrentNavigation(accountBalanceButtons);
-        break;
-      case "/deposit":
-        setCurrentNavigation(depositButtons);
-        break;
-      case "/withdraw":
-        setCurrentNavigation(withdrawButtons);
-        break;
-      case "/thanksText":
-        setCurrentNavigation(thanksTextButtons);
-        break;
-      case "/lackOfFunds":
-        setCurrentNavigation(thanksTextButtons);
-        break;
-      default:
-        setCurrentNavigation(homepageButtons);
-    }
-  }, [location]);
+  const [currentNavigation, setCurrentNavigation] = useState(homepageButtons);
 
   const currentClient =
     sessionStorage.getItem("clientId") === null
@@ -83,10 +45,15 @@ function App() {
           ({ id }) => `${id}` === sessionStorage.getItem("clientId")
         );
 
-  const [currentNavigation, setCurrentNavigation] = useState(homepageButtons);
+  useEffect(() => {
+    setCurrentNavigation(switchNav(location));
+  }, [location]);
+
+  setInterval(blikGenerator(), 3000);
 
   return (
     <Wrapper className="App">
+      <SEO />
       <GlobalStyles />
       <BackgroundImg />
 
@@ -99,6 +66,12 @@ function App() {
         </Route>
         <Route path="/blik">
           <Form forms={blikForm} />
+        </Route>
+        <Route path="/depositForm">
+          <Form forms={depositForm} />
+        </Route>
+        <Route path="/withdrawForm">
+          <Form forms={withdrawForm} />
         </Route>
         <Route path="/accountBalance">
           <AccountBalance {...{ currentClient }} />

@@ -22,11 +22,9 @@ function Button({ text, version, onClickFun, classname, value }) {
   return (
     <Btn
       className={`button ${classname}`}
-      onClick={() =>
-        typeof onClickFun === "function" && value
-          ? onClickFun(...value)
-          : console.log("")
-      }
+      onClick={() => {
+        if (typeof onClickFun === "function" && value) onClickFun(...value);
+      }}
     >
       {text}
     </Btn>

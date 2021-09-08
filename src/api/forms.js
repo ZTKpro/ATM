@@ -1,4 +1,5 @@
 import { loginIn, blikPayment } from "./verification";
+import changeBalance from "../functions/changeBalance";
 
 export const loginForm = {
   buttons: [
@@ -28,5 +29,35 @@ export const blikForm = {
     version: "white",
     onSumbit: blikPayment,
     errorMessage: "Nie poprawne dane",
+  },
+};
+
+export const depositForm = {
+  buttons: [
+    {
+      label: "Podaj kwote",
+    },
+  ],
+  submitButton: {
+    text: "Akceptuj",
+    version: "white",
+    onSumbit: changeBalance,
+    errorMessage: "Brak srodków",
+    varFun: "add",
+  },
+};
+
+export const withdrawForm = {
+  buttons: [
+    {
+      label: "Podaj kwote",
+    },
+  ],
+  submitButton: {
+    text: "Akceptuj",
+    version: "white",
+    onSumbit: changeBalance,
+    errorMessage: "Brak srodków",
+    varFun: "minus",
   },
 };

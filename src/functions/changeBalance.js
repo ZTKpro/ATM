@@ -1,4 +1,4 @@
-import clients from "./clients";
+import clients from "../api/clients";
 
 const changeBalance = (change, operation) => {
   const client = sessionStorage.getItem("clientId")
@@ -15,11 +15,11 @@ const changeBalance = (change, operation) => {
       window.location.pathname = "/lackOfFunds";
       return;
     }
-    client.accountBalance = client.accountBalance - change;
+    client.accountBalance = client.accountBalance - Number(change);
   }
 
   if (operation === "add") {
-    client.accountBalance = client.accountBalance + change;
+    client.accountBalance = client.accountBalance + Number(change);
   }
 
   const clientId = Number(sessionStorage.getItem("clientId"));

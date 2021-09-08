@@ -1,5 +1,5 @@
 import { loginOut } from "./verification";
-import changeBalance from "./changeBalance";
+import changeBalance from "../functions/changeBalance";
 
 const cancelButton = {
   text: "Anuluj",
@@ -14,6 +14,10 @@ const backButton = {
   goTo: "/menu",
 };
 
+export const cancelButtons = [cancelButton];
+
+export const backButtons = [backButton];
+
 export const homepageButtons = [
   {
     text: "Zaloguj się za pomocą loginu",
@@ -27,22 +31,8 @@ export const homepageButtons = [
   },
 ];
 
-export const loginButtons = [cancelButton];
-
-export const blikButtons = [cancelButton];
-
 export const menuButtons = [
   cancelButton,
-  {
-    text: "Pomoc",
-    version: "gradient",
-    goTo: "/help",
-  },
-  {
-    text: "Wpłać",
-    version: "gradient",
-    goTo: "/deposit",
-  },
   {
     text: "Wypłać",
     version: "gradient",
@@ -53,21 +43,20 @@ export const menuButtons = [
     version: "gradient",
     goTo: "/accountBalance",
   },
-];
-
-export const accountBalanceButtons = [backButton];
-
-export const thanksTextButtons = [
   {
-    text: "Wróć",
+    text: "Wpłać",
     version: "gradient",
-    goTo: "/",
-    onClick: loginOut,
+    goTo: "/deposit",
   },
 ];
 
 export const depositButtons = [
   backButton,
+  {
+    text: "Inna",
+    version: "gradient",
+    goTo: "/depositForm",
+  },
   {
     text: "50 zł",
     version: "gradient",
@@ -108,6 +97,11 @@ export const depositButtons = [
 
 export const withdrawButtons = [
   backButton,
+  {
+    text: "Inna",
+    version: "gradient",
+    goTo: "/withdrawForm",
+  },
   {
     text: "50 zł",
     version: "gradient",
