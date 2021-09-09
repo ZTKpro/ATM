@@ -1,30 +1,19 @@
 import clients from "../api/clients";
 
-const changeBalance = (change, operation) => {
-  const client = sessionStorage.getItem("clientId")
-    ? clients.find(({ id }) => `${id}` === sessionStorage.getItem("clientId"))
-    : false;
+const changeBalance = (params) => {
+  const client = JSON.parse(sessionStorage.getItem("client"));
+  const value = Number(params[0]);
+  const change = Number(params[1]);
 
-  if (client === false) {
-    window.location.pathname = "/";
+  if (change === "minus" && client.accountBalance < value) {
+    window.location.pathname = "/lackOfFunds";
     return;
   }
 
-  if (operation === "minus") {
-    if (client.accountBalance < change) {
-      window.location.pathname = "/lackOfFunds";
-      return;
-    }
-    client.accountBalance = client.accountBalance - Number(change);
-  }
+  if (change === "add") client.accountBalance = client.accountBalance + value;
+  if (change === "minus") client.accountBalance = client.accountBalance - value;
 
-  if (operation === "add") {
-    client.accountBalance = client.accountBalance + Number(change);
-  }
-
-  const clientId = Number(sessionStorage.getItem("clientId"));
-
-  clients[clientId] = client;
+  clients[client.id] = client;
 };
 
 export default changeBalance;

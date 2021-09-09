@@ -7,8 +7,8 @@ import {
   backButtons,
 } from "../api/navigation";
 
-const switchNav = (location) => {
-  switch (location.pathname) {
+const switchNav = () => {
+  switch (window.location.pathname) {
     case "/":
       return homepageButtons;
     case "/menu":
@@ -19,6 +19,7 @@ const switchNav = (location) => {
       return withdrawButtons;
     case "/depositForm":
     case "/withdrawForm":
+    case "/accountBalance":
       return backButtons;
     case "/thanksText":
     case "/login":

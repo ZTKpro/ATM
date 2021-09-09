@@ -23,7 +23,7 @@ function Button({ text, version, onClickFun, classname, value }) {
     <Btn
       className={`button ${classname}`}
       onClick={() => {
-        if (typeof onClickFun === "function" && value) onClickFun(...value);
+        if (onClickFun) onClickFun(value);
       }}
     >
       {text}

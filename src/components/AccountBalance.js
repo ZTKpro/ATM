@@ -2,7 +2,7 @@ import React from "react";
 
 import styled from "styled-components";
 
-function HeaderText({ currentClient }) {
+function HeaderText() {
   const Wrapper = styled.section`
     z-index: 1;
     margin: 0 auto;
@@ -14,9 +14,11 @@ function HeaderText({ currentClient }) {
     font-size: 70px;
   `;
 
+  const client = JSON.parse(sessionStorage.getItem("client"));
+
   return (
     <Wrapper>
-      <Content> {currentClient?.accountBalance + " zł"}</Content>
+      <Content> {client?.accountBalance + " zł"}</Content>
     </Wrapper>
   );
 }

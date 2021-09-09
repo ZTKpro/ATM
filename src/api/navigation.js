@@ -4,8 +4,8 @@ import changeBalance from "../functions/changeBalance";
 const cancelButton = {
   text: "Anuluj",
   version: "gradient",
-  goTo: "/",
   onClick: loginOut,
+  goTo: "/",
 };
 
 const backButton = {

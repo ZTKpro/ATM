@@ -6,7 +6,6 @@ function SEO() {
     <Helmet>
       <meta charSet="utf-8" />
       <title>ACE AGENCY ATM</title>
-      <link rel="icon" type="image/png" href="./img/logo.png" sizes="16x16" />
     </Helmet>
   );
 }

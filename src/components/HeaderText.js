@@ -3,7 +3,7 @@ import React from "react";
 import styled, { keyframes } from "styled-components";
 import colors from "../style/colors";
 
-function HeaderText({ coloredTittle, tittle, description, smallerFont }) {
+function HeaderText({ coloredTitle, title, description, smallerFont }) {
   const Wrapper = styled.section`
     z-index: 1;
     margin: 0 auto;
@@ -54,7 +54,7 @@ function HeaderText({ coloredTittle, tittle, description, smallerFont }) {
   return (
     <Wrapper>
       <H1>
-        <COLORED data-text={coloredTittle}>{coloredTittle}</COLORED> {tittle}
+        <COLORED data-text={coloredTitle}>{coloredTitle}</COLORED> {title}
       </H1>
       <P>{description}</P>
     </Wrapper>
