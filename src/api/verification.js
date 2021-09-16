@@ -1,24 +1,24 @@
 import clients from "./clients";
 
-// loginIn,Blik can be on one function. We need only add params with change log. + cardOptions
+export const loginIn = (params) => {
+  const password = params[1];
+  const by = params[2]; // byCard, byBlik, byLogin
 
-export const loginIn = (loginInput, passwordInput) => {
-  const client = clients.find(({ login }) => login === loginInput);
+  const client = clients.find(({ login, blikCode }) => {
+    if (by === "byBlik") return blikCode === Number(params[0]);
+    return login === params[0];
+  });
 
-  if (client === undefined || client.password !== passwordInput) return false;
+  if (
+    client === undefined ||
+    (by === "byLogin" && client.password !== password)
+  )
+    return false;
 
   sessionStorage.setItem("client", JSON.stringify(client));
   window.location.pathname = "/menu";
-  return true;
-};
+  if (by === "byBlik") window.location.pathname = "/deposit";
 
-export const blikPayment = (blikInput) => {
-  const client = clients.find(({ blikCode }) => blikCode === Number(blikInput));
-
-  if (client === undefined) return false;
-
-  sessionStorage.setItem("client", JSON.stringify(client));
-  window.location.pathname = "/deposit";
   return true;
 };
 

@@ -3,7 +3,7 @@ import clients from "../api/clients";
 const changeBalance = (params) => {
   const client = JSON.parse(sessionStorage.getItem("client"));
   const value = Number(params[0]);
-  const change = Number(params[1]);
+  const change = params[2];
 
   if (change === "minus" && client.accountBalance < value) {
     window.location.pathname = "/lackOfFunds";
@@ -14,6 +14,8 @@ const changeBalance = (params) => {
   if (change === "minus") client.accountBalance = client.accountBalance - value;
 
   clients[client.id] = client;
+  sessionStorage.setItem("client", JSON.stringify(client));
+  window.location.pathname = "/accountBalance";
 };
 
 export default changeBalance;

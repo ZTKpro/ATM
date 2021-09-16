@@ -53,7 +53,7 @@ function Form({ forms }) {
 
   const [errorMessage, setErrorMessage] = useState("");
 
-  let dataToSubmit = [];
+  let toSubmit = [null, null, forms.submitButton.varFun];
 
   return (
     <Wrapper>
@@ -64,7 +64,7 @@ function Form({ forms }) {
             id={label}
             name={label}
             onChange={(evt) => {
-              dataToSubmit.splice(nr, 1, evt.target.value);
+              toSubmit.splice(nr, 1, evt.target.value);
             }}
           />
         </div>
@@ -72,12 +72,7 @@ function Form({ forms }) {
       <Error> {errorMessage} </Error>
       <ButtonSubmit
         onClick={() => {
-          if (
-            forms.submitButton.onSumbit(
-              ...dataToSubmit,
-              forms.submitButton.varFun
-            ) === false
-          )
+          if (forms.submitButton.onSumbit(toSubmit) === false)
             setErrorMessage(forms.submitButton.errorMessage);
         }}
       >

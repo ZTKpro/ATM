@@ -15,6 +15,7 @@ export const loginForm = {
     version: "white",
     onSumbit: loginIn,
     errorMessage: "Nie poprawne dane",
+    varFun: "byLogin",
   },
 };
 
@@ -27,8 +28,9 @@ export const blikForm = {
   submitButton: {
     text: "Akceptuj",
     version: "white",
-    onSumbit: blikPayment,
+    onSumbit: loginIn,
     errorMessage: "Nie poprawne dane",
+    varFun: "byBlik",
   },
 };
 
